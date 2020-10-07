@@ -128,21 +128,17 @@
         generarSecuencia(){   //array de la secuencia con 10 posiciones
           this.secuencia = new Array(ULTIMO_NIVEL).fill(0).map(n => Math.floor (Math.random() *4) )
         }                 
-
-        siguienteNivel(){ /* va a llamar iluminarSecuencia, cuando se llegue a un nuevo nivel se va a iluminar la secuencia */
-          this.subnivel = 0 /* cada vez que pase de nivel */
-        /*   this.nombreAtributo = 'valor'  *//* agregamos atributo */
-          this.iluminarSecuencia() /* this llamamos a un metodo */
+        siguienteNivel(){ 
+          this.subnivel = 0 
+          this.iluminarSecuencia() 
           this.agregarEventosClick()
         }
-
         transformarNumeroAColor(num) {
           if (num === 0) return 'celeste'
           if (num === 1) return 'violeta'
           if (num === 2) return 'naranja'
           if (num === 3) return 'verde'
         }
- 
         transformarColorANumero(color){  
           switch (color) {
             case 'celeste' :
