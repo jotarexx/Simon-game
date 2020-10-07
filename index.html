@@ -12,7 +12,6 @@
         align-items: center;
         height: 100vh;
       }
-
       .gameboard {
         height: 100vh;
         width: 100vh;
@@ -22,25 +21,20 @@
         max-height: 60vh;
         max-width: 60vh;
       }
-
       .color {
         width: 50%;
         height: 50%;
         display: inline-block;
       }
-
       .left {
         float: left;
       }
-
       .right {
         float: left;
       }
-
       .celeste {
         background: #22a6b3;
       }
-
       .celeste.light {
         background: #7ed6df;
       }
@@ -48,27 +42,21 @@
       .violeta {
         background: #be2edd;
       }
-
       .violeta.light {
         background: #e056fd;
       }
-
       .naranja {
         background: #f0932b;
       }
-
       .naranja.light {
         background: #ffbe76;
       }
-
       .verde {
         background: #6ab04c;
       }
-
       .verde.light {
         background: #badc58;
       }
-
       .btn-start {
         width: 400px;
         height: 100px;
@@ -79,15 +67,12 @@
         top: calc(50% - 50px);
         left: calc(50% - 200px);
       }
-
       .hide {
         display: none;
       }
-      
       *{
         font-family: Arial, Helvetica, sans-serif;
       }
-
     </style>
   </head>
   <body>
@@ -139,19 +124,7 @@
             btnEmpezar.classList.add('hide')
           }
         }
-
-        /* Generamos un ARRAY de numeros Random 
-        si queremos poner atributo nuevo, lo ponemos asi, sin que exista y se va a guardar dentro del juego. 
-        lo que hara es definir la secuencia internamente del juego
-        le decimos al constructor cuantos elementos queremos que tenga(10)
-        llamamos a la funcion Fill, ponemos todos sus elementos en 0 cero
-        es IMPORTANTE la funcion Fill, porque luego queremos llamar a la funcion MAP y esta NO va a funcionar
-        cuando tengamos eleme queno estan definidos dentro de un Array, tienen que estar definidos y tienen que tener algun valor aunque sea 0
-        Array(10).fill(0) tenemos diez ceros 
-        N es un cero y retornamos un math.random  multiplicado por 4 y obtendremos un valor entre 0 y 4, pero nunca llegara a ser 4 (3,9) y sera decimal
-        Math.random es un valor entre 0 y 1
-        Math.floor va a redondear el numero para abajo el numero */
-
+        
         generarSecuencia(){   //array de la secuencia con 10 posiciones
           this.secuencia = new Array(ULTIMO_NIVEL).fill(0).map(n => Math.floor (Math.random() *4) )
         }                 
@@ -170,9 +143,9 @@
           if (num === 3) return 'verde'
         }
  
-        transformarColorANumero(color){  /* a cada numero le va a asignar un color */
-          switch (color) {     /* funcion transforma un numero a un color */
-            case 'celeste' :           /* para cada caso retornara otra cosa */
+        transformarColorANumero(color){  
+          switch (color) {
+            case 'celeste' :
               return 0
             case 'violeta' :
               return  1
@@ -183,14 +156,11 @@
           }
         }
 
-        iluminarSecuencia(){ /* va a recorrer el array de la secuancia hasta el array que este el usuario, comienza en niv 1 y luego se va a ir incrementando */
-          for (let i = 0; i < this.nivel; i++ ){  /* vamos a obtener el color que tenemos que iluminar y llamar a una funmcion para que lo ilumine, para obtener ese color */
+        iluminarSecuencia(){ 
+          for (let i = 0; i < this.nivel; i++ ){
             const color = this.transformarNumeroAColor(this.secuencia[i])
-            setTimeout(() => this.iluminarColor(color), 1000 *i)  /* el tiempo que va tiene que tardar entre parpadeos */
-                                                       /* i es 0, el inicio, *1 el 1er color se ilumina ya, el 2do al 1 seg, el 3ro a los 2 segundos */
-          } /* LET sirve para que color se mantenga para todo el bloque de la funcion, hara que la var color se mantenta para cada uno de estos ciclos y settimeout va a saber cual es cada uno de estos colores */
-            /* siempre es mejor declara las variables con const en caso de i++ no podemos porque va a ir cambiando por eso se deja en 
-               siempre que podamos usemos const antes de let y usar let antes de var */
+            setTimeout(() => this.iluminarColor(color), 1000 *i)
+          }
         }
         
         iluminarColor (color) {          /* le agregamos la clase css light y luego se la sacamos para que parpadee */
