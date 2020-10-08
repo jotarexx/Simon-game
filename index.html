@@ -91,7 +91,7 @@
       const naranja = document.getElementById ('naranja')
       const verde = document.getElementById ('verde')
 
-      const btnEmpezar = document.getElementById ('btnEmpezar') /* para obtener el botón  get va a recibir un string con el id del elemento que queremos obtener */
+      const btnEmpezar = document.getElementById ('btnEmpezar')  
       const ULTIMO_NIVEL = 10
 
       class Juego {   /* clase Juego va a tener toda la logica del juego */
@@ -103,12 +103,12 @@
           setTimeout(this.siguienteNivel, 500)
         }
 
-        inicializar() {  /* definimos inicializar , va a ocultar el boton de empezar */
+        inicializar() {  
           this.siguienteNivel= this.siguienteNivel.bind(this)
-          this.elegirColor = this.elegirColor.bind(this)  /* bind: atadura */
-          this.toggleBtnEmpezar() // toogle es un INTERRUPTOR: Prendido - Apagado          
-         /* ocultamos el boton empezar */
-          this.nivel = 1 /* nivel 1 parpadea 1 color */
+          this.elegirColor = this.elegirColor.bind(this)  
+          this.toggleBtnEmpezar()          
+         
+          this.nivel = 1 
           this.colores = {
             celeste, 
             violeta, 
@@ -118,14 +118,14 @@
         }
 
         toggleBtnEmpezar(){
-          if (btnEmpezar.classList.contains('hide')){  //contains para ver si tiene la clase hide
-            btnEmpezar.classList.remove('hide') // si tiene la clase hide, se la quitamos para que se muestre
+          if (btnEmpezar.classList.contains('hide')){  
+            btnEmpezar.classList.remove('hide')  
           }else{
             btnEmpezar.classList.add('hide')
           }
         }
         
-        generarSecuencia(){   //array de la secuencia con 10 posiciones
+        generarSecuencia(){    
           this.secuencia = new Array(ULTIMO_NIVEL).fill(0).map(n => Math.floor (Math.random() *4) )
         }                 
         siguienteNivel(){ 
@@ -159,15 +159,15 @@
           }
         }
         
-        iluminarColor (color) {          /* le agregamos la clase css light y luego se la sacamos para que parpadee */
-          this.colores[color].classList.add ('light')  /* el boton que tenga este color */
-          setTimeout(() => this.apagarColor(color),350 )  /*(parpadeo 3 segundos) recibe una funcion y le decimos que apague el color */
+        iluminarColor (color) {           
+          this.colores[color].classList.add ('light')   
+          setTimeout(() => this.apagarColor(color),350 )  
         }
         apagarColor(color){ 
           this.colores[color].classList.remove('light') /* recibe el color del boton */
         }
         agregarEventosClick(){  
-          this.colores.celeste.addEventListener ('click', this.elegirColor) /* addEventListener agregamos un manejador de un evento(escuchador de evento) */
+          this.colores.celeste.addEventListener ('click', this.elegirColor)  
           this.colores.verde.addEventListener ('click', this.elegirColor)
           this.colores.violeta.addEventListener ('click', this.elegirColor)
           this.colores.naranja.addEventListener ('click', this.elegirColor)
@@ -180,18 +180,18 @@
           this.colores.naranja.removeEventListener ('click', this.elegirColor)
         }
 
-        elegirColor(ev){ /* ev, es el parametro para poder llamar a los manejadores de evento */
-         const nombreColor = ev.target.dataset.color /* para PODER VER el NUMERO que eligio el usuario */
+        elegirColor(ev){ 
+         const nombreColor = ev.target.dataset.color
          const numeroColor = this.transformarColorANumero(nombreColor)
          this.iluminarColor(nombreColor)
-         if (numeroColor === this.secuencia[this.subnivel]) { /* nivel comienza en el 1 */
-          this.subnivel++ /* el subnivel empieza en 0, si se elige bien el color, el subnivel valdrá 1*/
-          if (this.subnivel === this.nivel ){ /* si esto sucede, el jugador pasa de nivel */
+         if (numeroColor === this.secuencia[this.subnivel]) { 
+          this.subnivel++ 
+          if (this.subnivel === this.nivel ){ 
             this.nivel++
             this.eliminarEventosClick() 
-            if (this.nivel === (ULTIMO_NIVEL +1)){ //preguntar si el nivel nuevo que llego el usuario es igual al ultimo nivel +1
+            if (this.nivel === (ULTIMO_NIVEL +1)){ 
             this.ganoElJuego()
-          } else{ //si no es el ultimo nivel entonces tiene que seguir avanzando
+          } else{ 
             setTimeout(this.siguienteNivel, 1500)
             
           }
@@ -201,22 +201,21 @@
          }
         }
 
-        ganoElJuego() { //el Swal nos devuelve una promesa
+        ganoElJuego() { 
           swal('FELICITACIONES', 'ganaste el juego', 'success')
-          .then(this.inicializar)   //cuando apreten Cerrar el Swal
-              // va a iniciar el juego nuevamente
-        }
-        perdioElJuego() { //el Swal nos devuelve una promesa
+          .then(this.inicializar)   
+       }
+        perdioElJuego() { 
           swal('PERDISTE', 'inténtalo de nuevo :) ', 'error')
-          .then(() => {   //cuando apreten Cerrar el Swal
-            this.eliminarEventosClick()   //eliminar los eventos de click y va a iniciar el juego nuevamente
+          .then(() => {  
+            this.eliminarEventosClick()   
             this.inicializar()
           })
         }
 
       }
 
-      function empezarJuego() { /* definir función  */
+      function empezarJuego() { 
         window. juego = new Juego()
       }
 
