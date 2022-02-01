@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Simon Dice</title>
+    <title>Simon Game</title>
     <style>
       body {
         margin: 0;
@@ -200,7 +200,6 @@
            this.perdioElJuego()
          }
         }
-
         ganoElJuego() { 
           swal('FELICITACIONES', 'ganaste el juego', 'success')
           .then(this.inicializar)   
@@ -212,13 +211,10 @@
             this.inicializar()
           })
         }
-
       }
-
       function empezarJuego() { 
         window. juego = new Juego()
       }
-
     </script>
   </body>
 </html>
