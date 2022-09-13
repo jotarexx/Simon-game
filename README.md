@@ -1,7 +1,8 @@
 Memory game
 
 Tecnologias usadas 🔨
-https://camo.githubusercontent.com/bfa71fe5e1eb3ca57a7e4ef9c6b2ca21414c4fdab27ac6861e211e7cfe8f7d9f/68747470733a2f2f70726f66696c696e61746f722e7269736861762e6465762f736b696c6c732d6173736574732f68746d6c352d6f726967696e616c2d776f72646d61726b2e737667
+![image](https://user-images.githubusercontent.com/63475312/189978348-b91b784f-946b-4794-ae16-3e9799dc3766.png)
+
   
   
 link: https://jotarexx.github.io/Simon-game/
